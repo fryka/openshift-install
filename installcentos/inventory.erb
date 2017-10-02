@@ -1,0 +1,23 @@
+[OSEv3:children]
+masters
+nodes
+
+[OSEv3:vars]
+ansible_ssh_user=root
+deployment_type=origin
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+containerized=true
+openshift_release=v3.6.0
+openshift_image_tag=v3.6.0
+openshift_public_hostname=console.bfcglobal.com
+openshift_master_default_subdomain=apps..bfcglobal.com
+openshift_hosted_metrics_deploy=true
+
+[masters]
+console.bfcglobal.com openshift_schedulable=true
+
+[etcd]
+console.bfcglobal.com
+
+[nodes]
+console..bfcglobal.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true
