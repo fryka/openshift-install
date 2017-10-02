@@ -42,12 +42,19 @@ activation {
 }
 
 pvcreate /dev/sdb
+<br/>
 vgcreate docker /dev/sdb
+<br/>
 lvcreate --wipesignatures y -n thinpool docker -l 95%VG
+<br/>
 lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG
+<br/>
 lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta
+<br/>
 lvchange --metadataprofile docker-thinpool docker/thinpool
+<br/>
 lvs -o+seg_monitor
+<br/>
 rm -rf /var/lib/docker
 
 vi /etc/docker/daemon.json
@@ -61,9 +68,13 @@ vi /etc/docker/daemon.json
     ]
 }
 
+<br/>
 service docker start
+<br/>
 git clone http://github.com/openshift/openshift-ansible
+<br/>
 git clone http://github.com/gshipley/installcentos
+<br/>
 
 vi installcentos/inventory.erb
 Change version to 3.6.0
