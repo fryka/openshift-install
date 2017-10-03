@@ -7,6 +7,8 @@ ansible_ssh_user=root
 deployment_type=origin
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
 containerized=true
+openshift_docker_use_system_container=true
+openshift_use_etcd_system_container=true
 openshift_release=v3.6.0
 openshift_image_tag=v3.6.0
 openshift_public_hostname=console.bfcglobal.com
@@ -20,4 +22,4 @@ console.bfcglobal.com openshift_schedulable=true
 console.bfcglobal.com
 
 [nodes]
-console..bfcglobal.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true
+console.bfcglobal.com openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true
